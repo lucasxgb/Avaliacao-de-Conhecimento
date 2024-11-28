@@ -20,13 +20,28 @@ void showMenu() {
         break;
       case 1:
         HourPayment hourPayament = HourPayment();
-        print("Insira o Salario Bruto: ");
-        String? input = stdin.readLineSync();
-        double? grossSalary = input != null ? double.tryParse(input) : null;
-        grossSalary == null
+
+        print("Insira a quantidade de filhos menores de 14 anos: ");
+        String? inputSon = stdin.readLineSync();
+
+        print("Insira o seu salario hora: ");
+        String? inputHour = stdin.readLineSync();
+
+        print("Insira a quantidade de horas trabalhadas no mês: ");
+        String? inputHourMonth = stdin.readLineSync();
+
+        int? qntdSon = input != null ? int.tryParse(inputSon!) : null;
+        int? qntdHourMonth =
+            input != null ? int.tryParse(inputHourMonth!) : null;
+        double? salaryHour = input != null ? double.tryParse(inputHour!) : null;
+        salaryHour == null
             ? print(
                 "O número inserido não pode ser lido, deve estar no formato: XXXX.XX")
-            : hourPayament.calculateNetSalary(grossSalary);
+            : qntdSon == null || qntdSon < 0
+                ? print("O valor inserido não é aceito")
+                : qntdHourMonth == null || qntdHourMonth < 0
+                    ? print("A quantidade de horas no mês é invalida")
+                    : hourPayament.calculateNetSalary(salaryHour, qntdSon, qntdHourMonth);
         break;
       case 2:
         ProcessNumbers processNumber = ProcessNumbers();

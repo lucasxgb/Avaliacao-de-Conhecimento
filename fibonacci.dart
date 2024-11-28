@@ -1,31 +1,25 @@
 /* Reposta do exercício 3
  (Criação de sistema de Fibonacci) */
 
-
 class Fibonacci {
-  List<int> fibonacciList = [];
+  List<int> fibonacciList = [1, 1, 2];
 
-  int fibo(int value) {
-    if (value == 0) {
-      return 0;
-    } else if (value == 1) {
-      return 1;
+  void fibonacci(int value) {
+    int index = fibonacciList[value - 1];
+    if ((index % 2) == 0) {
+      fibonacciList.add(fibonacciList[value - 1] +
+          fibonacciList[value - 2] +
+          fibonacciList[value - 3]);
     } else {
-      return (fibo(value - 1) + fibo(value - 2));
+      fibonacciList.add(fibonacciList[value - 1] + fibonacciList[value - 2]);
     }
-  }
-
-  void addInList(int fibonacciValue) {
-    fibonacciList.add(fibonacciValue);
   }
 
   void processValues(int val) {
-    int temp = val;
-    while (val > 0) {
-      addInList(fibo(val));
-      val -= 1;
+    for (int i = 3; i < val; i++) {
+      fibonacci(i);
     }
-    showDetails(temp);
+    showDetails(val);
   }
 
   void showDetails(int value) {

@@ -1,8 +1,6 @@
 import "dart:io";
 /* Reposta do exercício 2 (Criação de sistema que recebe uma sequência de números) */
 
-
-
 class ProcessNumbers {
   List<int> listNumber = [];
 
@@ -32,25 +30,35 @@ class ProcessNumbers {
 
   void showAllSequence() {
     print("############## Sequência de números recebida ##############");
-    
+
     print(this.listNumber);
   }
 
   void showMaxAndMin() {
     int max = 0;
     int min = 0;
+    int second = 0;
 
     List<int> orderList = [...this.listNumber];
     orderList.sort();
     max = orderList.last;
     min = orderList.first;
+    if (max == min) {
+      second = orderList.first;
+    }
+
+    while (orderList.contains(max)) {
+      orderList.removeLast();
+    }
+
+    second = orderList.last;
 
     print(
         "############## Esses são o maior e menor número da sequência ##############");
     print("Máximo $max");
+    print("Segundo maior $second");
     print("Mínimo $min");
     print('\n' * 1);
-
   }
 
   void clearList() {
